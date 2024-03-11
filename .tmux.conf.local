@@ -231,14 +231,14 @@ tmux_conf_theme_window_status_last_bg="$tmux_conf_theme_colour_2"
 tmux_conf_theme_window_status_last_attr="none"
 
 # status left/right sections separators
-tmux_conf_theme_left_separator_main=""
-tmux_conf_theme_left_separator_sub="|"
-tmux_conf_theme_right_separator_main=""
-tmux_conf_theme_right_separator_sub="|"
-#tmux_conf_theme_left_separator_main='\uE0B0'  # /!\ you don't need to install Powerline
-#tmux_conf_theme_left_separator_sub='\uE0B1'   #   you only need fonts patched with
-#tmux_conf_theme_right_separator_main='\uE0B2' #   Powerline symbols or the standalone
-#tmux_conf_theme_right_separator_sub='\uE0B3'  #   PowerlineSymbols.otf font, see README.md
+#tmux_conf_theme_left_separator_main=""
+#tmux_conf_theme_left_separator_sub="|"
+#tmux_conf_theme_right_separator_main=""
+#tmux_conf_theme_right_separator_sub="|"
+tmux_conf_theme_left_separator_main='\uE0B0'  # /!\ you don't need to install Powerline
+tmux_conf_theme_left_separator_sub='\uE0B1'   #   you only need fonts patched with
+tmux_conf_theme_right_separator_main='\uE0B2' #   Powerline symbols or the standalone
+tmux_conf_theme_right_separator_sub='\uE0B3'  #   PowerlineSymbols.otf font, see README.md
 
 # status left/right content:
 #   - separate main sections with "|"
@@ -495,10 +495,12 @@ tmux_conf_uninstall_plugins_on_reload=true
 # to enable a plugin, use the 'set -g @plugin' syntax:
 # visit https://github.com/tmux-plugins for available plugins
 set -g @plugin 'tmux-plugins/tmux-copycat'
+set -g @plugin 'tmux-plugins/tmux-yank'
 #set -g @plugin 'tmux-plugins/tmux-cpu'
-set -g @plugin 'ofirgall/tmux-window-name'
+setw -g automatic-rename off #!important
+set -g @plugin 'ofirgall/tmux-window-name' # Must be loaded before tmux-resurrect
 set -g @plugin 'tmux-plugins/tmux-resurrect'
-set -g @plugin 'tmux-plugins/tmux-continuum'
+set -g @plugin 'tmux-plugins/tmux-continuum' # Requires tmux-resurrect
 set -g @continuum-restore 'on'
 set -g @plugin 'tmux-plugins/tmux-fpp'
 set -g @plugin 'sainnhe/tmux-fzf'
@@ -546,9 +548,21 @@ set -g @plugin 'omerxx/tmux-sessionx'
 set -g @sessionx-zoxide-mode 'on'
 set -g @sessionx-pointer "❥ "
 
-# Plugin DEPS: Python 3.6.8+, pip, libtmux
-# ($ pip3 install --user libtmux)
-# (Python 3.6.X only: $ python3 -m pip install dataclasses --user)
+
+
+
+# Plugin DEPS:
+#   tmux-yank
+#     xsel (recommended) or xclip (for X).
+#     wl-copy from wl-clipboard (for Wayland)
+#     For Cygwin:
+#       putclip
+#   tmux-window-name
+#     Python 3.6.8+ (Python 3.6.X only: $ python3 -m pip install dataclasses --user)
+#     pip
+#     libtmux ($ pip3 install --user libtmux)
+
+
 # For treemux:
 #   $ pip3 install --user pynvim
 #   neovim
@@ -561,6 +575,9 @@ set -g @sessionx-pointer "❥ "
 #   fzf-tmux
 #   bat
 #   Optional: zoxide
+
+
+
 
 # -- custom variables ----------------------------------------------------------
 
