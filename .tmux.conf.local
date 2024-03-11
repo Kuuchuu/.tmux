@@ -497,15 +497,21 @@ tmux_conf_uninstall_plugins_on_reload=true
 set -g @plugin 'tmux-plugins/tmux-copycat'
 set -g @plugin 'tmux-plugins/tmux-yank'
 #set -g @plugin 'tmux-plugins/tmux-cpu'
-setw -g automatic-rename off #!important
-set -g @plugin 'ofirgall/tmux-window-name' # Must be loaded before tmux-resurrect
+#set -g status-right '#{cpu_bg_color} CPU: #{cpu_icon} #{cpu_percentage}'
+#setw -g automatic-rename off #!important
+#set -g @plugin 'ofirgall/tmux-window-name' # Must be loaded before tmux-resurrect
 set -g @plugin 'tmux-plugins/tmux-resurrect'
 set -g @plugin 'tmux-plugins/tmux-continuum' # Requires tmux-resurrect
 set -g @continuum-restore 'on'
+set -g @continuum-boot 'on'
 set -g @plugin 'tmux-plugins/tmux-fpp'
+set -g @fpp-key 'o'
 set -g @plugin 'sainnhe/tmux-fzf'
+TMUX_FZF_LAUNCH_KEY="t"
 set -g @plugin 'noscript/tmux-mighty-scroll'
-set -g @plugin 'joshmedeski/tmux-nerd-font-window-name'
+set -g @mighty-scroll-by-line 'man less pager fzf nano'
+#set -g @mighty-scroll-pass-through 'vim nvim nano'
+set -g @plugin 'joshmedeski/tmux-nerd-font-window-name' # Config file: ~/.config/tmux/tmux-nerd-font-window-name.yml  https://github.com/joshmedeski/tmux-nerd-font-window-name?tab=readme-ov-file#configuration
 # set -g @plugin 'rickstaa/tmux-notify' # prefix + m: Start monitoring a pane and notify when it finishes. prefix + alt + m: Start monitoring a pane, return it in focus and notify when it finishes. prefix + M: Cancel monitoring of a pane.
 # set -g @plugin 'graemedavidson/tmux-pane-focus'
 set -g @plugin 'lljbash/tmux-update-display'
@@ -561,6 +567,21 @@ set -g @sessionx-pointer "❥ "
 #     Python 3.6.8+ (Python 3.6.X only: $ python3 -m pip install dataclasses --user)
 #     pip
 #     libtmux ($ pip3 install --user libtmux)
+#   tmux-fpp
+#     fpp - https://github.com/facebook/pathpicker/
+#   tmux-fzf
+#     bash
+#     sed
+#     junegunn/fzf
+#     CopyQ
+#     pstree
+#   tmux-mighty-scroll
+#     set -g mouse on
+#   tmux-nerd-font-window-name
+#     yq
+#   tmux-notify
+#     bash
+#     notify-send OR osascript
 
 
 # For treemux:
